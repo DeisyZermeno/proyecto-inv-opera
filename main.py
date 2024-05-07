@@ -1,6 +1,6 @@
 import streamlit as st
 import numpy as np
-from .resolucion import region_factible, graphical_method
+from resolucion import region_factible, graphical_method
 
 st.title("Hola, bienvenid@ a la resolución de problemas por el :blue[Método Gráfico]")
 if not "cuenta" in st.session_state:
