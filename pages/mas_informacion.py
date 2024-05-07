@@ -1,0 +1,25 @@
+import streamlit as st
+
+st.title("Método gráfico")
+url_imagen = 'https://www.plandemejora.com/wp-content/uploads/region-factible-1.png'
+
+st.markdown(f'<img src="{url_imagen}" width="400" height="300">', unsafe_allow_html=True)
+st.markdown("El **método gráfico** resulta beneficioso al representar visualmente las restricciones y la función objetivo en un plano cartesiano, lo cual facilita la identificación de la solución óptima de un problema. Esta técnica visual es de gran utilidad para encontrar dicha solución, al ofrecer una representación gráfica clara de las restricciones y objetivos del problema.")
+st.markdown("Es importante recordar que este método es más efectivo cuando trabajas consistemas de ecuaciones lineales simples con pocas incógnitas.")
+st.markdown('<p style="font-size: 21px; color: green;">Componentes del método gráfico.</p>', unsafe_allow_html=True)
+st.markdown('- **Variables de decisión:** Son las cantidades que se deben determinar para resolver el problema. Por ejemplo, en un problema de producción, podrían ser la cantidad de productos a fabricar de dos tipos diferentes.\n- **Restricciones:**  Son las limitaciones o condiciones que restringen las posibles combinaciones de valores que pueden tomar las variables de decisión. Estas restricciones se expresan en forma de ecuaciones o desigualdades y suelen estar relacionadas con recursos disponibles, capacidades, demanda, etc. \n- **Función objetivo:**  Es la medida de desempeño que se desea optimizar, ya sea maximizando (obtener el máximo valor) o minimizando (obtener el mínimo valor). Por ejemplo, en un problema de maximización de beneficios, la función objetivo podría ser la utilidad total.')
+st.markdown('<p style="font-size: 21px; color: green;">Pasos para aplicar el método gráfico.</p>', unsafe_allow_html=True)
+st.markdown("**1. Identificación de restricciones y función objetivo:** Define las restricciones del problema y la función objetivo que quieres optimizar.")
+st.markdown("**2. Graficación de restricciones:** Transforma cada restricción a su forma gráfica en el plano cartesiano. Para esto, despeja la variable de decisión en cada restricción y encuentra los puntos de intersección con los ejes x e y. Luego, une estos puntos para formar las líneas que representan las restricciones.")
+st.markdown("**3. Identificación de la región factible:** La región que conforman todas las restricciones se conoce como región factible. Es el conjunto de combinaciones de valores de las variables de decisión que cumplen con todas las restricciones del problema. Esta región suele ser un área limitada en el gráfico.")
+st.markdown("**4. Graficación de la función objetivo:**  Dibuja la función objetivo en el mismo gráfico que las restricciones. Para esto, utiliza diferentes valores de la función objetivo y traza las líneas paralelas que representan diferentes niveles de la función objetivo. Por ejemplo, si estás maximizando la función objetivo, dibuja líneas paralelas con valores crecientes.")
+st.markdown("**5. Punto de intersección y solución óptima:** Encuentra el punto donde la línea de la función objetivo toca la región factible. Este punto es la solución óptima del problema y proporciona los valores óptimos de las variables de decisión que maximizan o minimizan la función objetivo.")
+st.markdown("Al seguir los pasos anteriores se consigue la solución óptima de la funcion objetivo.")
+st.markdown('<p style="font-size: 21px; color: green;">Ejemplo del método gráfico.</p>', unsafe_allow_html=True)
+st.markdown("Imagina que estás planificando un viaje en automóvil desde tu casa (punto A) hasta un destino (punto B), y tienes dos rutas alternativas para elegir. Quieres determinar cuál ruta tomar en función de la distancia y el tiempo de viaje.Digamos que las dos rutas disponibles son:")
+st.markdown("Ruta A: Esta ruta implica tomar una carretera principal con menos curvas pero un límite de velocidad más bajo. La distancia entre A y B es de 200 kilómetros, y el tiempo de viaje estimado es de 3 horas.")
+st.markdown("Ruta B: Esta ruta es un poco más larga en términos de distancia, 250 kilómetros, pero tiene menos tráfico y un límite de velocidad más alto. El tiempo de viaje estimado para esta ruta es de 4 horas.")
+st.markdown("Para tomar una decisión informada sobre qué ruta elegir, puedes usar el método gráfico:")
+st.markdown('- Eje X (horizontal): Representa la distancia en kilómetros.\n- Eje Y (vertical): Representa el tiempo de viaje en hora.\n')
+st.markdown("Luego, graficas ambas rutas en un plano cartesiano. Para la Ruta A, tendrías un punto en (200, 3), y para la Ruta B, tendrías un punto en (250, 4).")
+st.markdown("Después, trazas una línea recta para cada ruta y encuentras el punto de intersección. Este punto te indicará el equilibrio entre la distancia y el tiempo de viaje para ambas rutas. La ruta que esté más cerca de tu punto de partida (A) será la mejor opción en función de tus preferencias personales, como si prefieres minimizar el tiempo de viaje o prefieres un viaje más corto en distancia.")
