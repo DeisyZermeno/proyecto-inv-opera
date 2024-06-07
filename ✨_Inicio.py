@@ -1,4 +1,5 @@
 import streamlit as st
+import matplotlib.pyplot as plt
 import numpy as np
 from resolucion import region_factible, graphical_method
 
@@ -106,11 +107,13 @@ def resolucion():
         st.write("La solución para el mínimo es:", mini)
         st.write("Con x1 =", min_x1)
         st.write("Con x2 =", min_x2)
+        return min_x1, min_x2, mini
 
     if seleccion_optimización == "Maximizar":
         st.write("La solución para el máximo es:", maxi)
         st.write("Con x1 =", max_x1)
         st.write("Con x2 =", max_x2)
+        return max_x1, max_x2, maxi
 
 
 if st.session_state.n_restricciones:
@@ -125,4 +128,47 @@ if st.session_state.n_restricciones:
                         <span style='color:#7FCBCE'><b>R{i + 1} </b> = {x1_rs[i]} <b>X<sub>1</sub></b> {signo_rs[i]} 
                         {x2_rs[i]} <b>X<sub>2</sub></b> {signo_igualdad_rs[i]} {igualdad_rs[i]} </span></p>  """, unsafe_allow_html=True,)
             
-        resolucion()
+        v1, v2, r = resolucion()
+
+        if st.session_state.n_restricciones == 2:
+            st.title("Análisis de sensibilidad")
+            s1 = r / x1
+            s2 = r / x2
+
+            m_tmp = -s2 / s1
+
+            x_tmp = np.linspace(-0.1, s1 + 0.1, 1000)
+            y_tmp = m_tmp * x_tmp + s2
+
+            fig, ax = plt.subplots()
+            ax.plot(x_tmp, y_tmp)
+            ax.plot(np.linspace(0, s1 + 1, 2), np.zeros(2), '--', c = 'black')
+            ax.plot(np.zeros(2), np.linspace(0, s2 + 1, 2), '--', c = 'black')
+            ax.scatter(v1, v2, c='r', label = "FEV")
+            ax.text(v1 + 0.1, v2 + 0.1, f"({v1}, {v2})")
+            ax.legend()
+            
+            st.pyplot(fig)
+
+            st.title("Intervalo de optimalidad")
+
+            c1_x1, c1_x2 = x1_rs
+            c2_x1, c2_x2 = x2_rs
+
+            div1 = c1_x1 / c2_x1
+            div2 = c1_x2 / c2_x2
+            
+            ma, mi = max(div1, div2), min(div1, div2)
+            st.write(f"{mi:.2f}" + r" ≤ $\frac{c_1}{c_2}$ ≤ " + f"{ma:.2f}")
+
+            new_1, new_2 = div1 * x2, div2 * x2
+            ma, mi = max(new_1, new_2), min(new_1, new_2)
+
+            st.write(f"{mi:.2f}" + r" ≤ $c_1$ ≤ " + f"{ma:.2f}")
+
+            new_1, new_2 = div1 ** -1 * x1, div2 ** -1 * x1
+            ma, mi = max(new_1, new_2), min(new_1, new_2)
+
+            st.write(f"{mi:.2f}" + r" ≤ $c_2$ ≤ " + f"{ma:.2f}")
+
+
